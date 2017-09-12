@@ -23,10 +23,10 @@ namespace AccountStuff
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //this.Hide();
-            //this.ShowInTaskbar = false;
+            this.Hide();
+            this.ShowInTaskbar = false;
             SpeechRecognitionEngine _recognizer = new SpeechRecognitionEngine();
-            _recognizer.LoadGrammar(new Grammar(new GrammarBuilder("i love tsm")) { Name = "testGrammar" });
+            _recognizer.LoadGrammar(new Grammar(new GrammarBuilder("shrek")) { Name = "testGrammar" });
 
             _recognizer.SpeechRecognized += sr_SpeechRecognized;
             _recognizer.SetInputToDefaultAudioDevice();
@@ -43,7 +43,10 @@ namespace AccountStuff
         {
             if (textBox1.Text == "DieYou!((^")
             {
-
+                this.Hide();
+                var form2 = new AccountsForm();
+                form2.FormClosed += (s, args) => this.Close();
+                form2.Show();
             }
             //textBox1.Text = RandomPassword.Generate();
             

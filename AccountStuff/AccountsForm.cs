@@ -16,5 +16,11 @@ namespace AccountStuff
         {
             InitializeComponent();
         }
+
+        private void AccountsForm_Load(object sender, EventArgs e)
+        {
+            FileOpener fo = new FileOpener();
+            
+        }
     }
 }
