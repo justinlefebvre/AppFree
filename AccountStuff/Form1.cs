@@ -11,6 +11,7 @@ using System.Speech;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Threading;
+using System.IO;
 
 namespace AccountStuff
 {
@@ -23,6 +24,7 @@ namespace AccountStuff
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            FileOpener fo = new FileOpener();
             this.Hide();
             this.ShowInTaskbar = false;
             SpeechRecognitionEngine _recognizer = new SpeechRecognitionEngine();
@@ -31,6 +33,13 @@ namespace AccountStuff
             _recognizer.SpeechRecognized += sr_SpeechRecognized;
             _recognizer.SetInputToDefaultAudioDevice();
             _recognizer.RecognizeAsync(RecognizeMode.Multiple);
+
+            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "Encryption.bin"))
+            {
+                File.AppendAllText(@"temp.txt", null);
+                fo.EncryptFile("temp.txt", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "Encryption.bin");
+                File.Delete("temp.txt");
+            }
         }
 
         private void sr_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
