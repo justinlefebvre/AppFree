@@ -32,7 +32,7 @@ namespace AccountStuff
 
             _recognizer.SpeechRecognized += sr_SpeechRecognized;
             _recognizer.SetInputToDefaultAudioDevice();
-            _recognizer.RecognizeAsync(RecognizeMode.Multiple);
+            _recognizer.RecognizeAsync(RecognizeMode.Single);
 
             if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "Encryption.bin"))
             {
@@ -46,6 +46,7 @@ namespace AccountStuff
         {
             this.Show();
             this.ShowInTaskbar = true;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
